@@ -212,6 +212,8 @@ if __name__ == '__main__':
     with tf.Session(config=config) as sess:
         model = create_model(sess, args, vocab)
 
+        writer = tf.train.SummaryWriter("./tensorflowgraph", graph=tf.get_default_graph())
+
         if args.beam > 1:
             decoder = beam_search.Decoder(sess, args, vocab, model)
         else:
